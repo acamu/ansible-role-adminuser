@@ -1,0 +1,16 @@
+---
+
+- debug:
+    msg: "System user {{ adm_user_name }} has passwd {{ adm_user_password }}"
+
+
+- name: Create a login user
+  user:
+    name:  '{{ adm_user_name }}'
+    password:  '{{ adm_user_password }}'
+    groups: '{{ adm_user_groups }}' # Empty by default, here we give it some groups
+    state: present
+    shell: /bin/bash       # Defaults to /bin/bash
+    system: no             # Defaults to no
+    createhome: yes        # Defaults to yes
+    home: '/home/{{ adm_user_name }}'  # Defaults to /home/<username>
